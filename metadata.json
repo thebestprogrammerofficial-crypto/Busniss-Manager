@@ -1,0 +1,5 @@
+{
+  "name": "Business Manager",
+  "description": "A streamlined Enterprise Resource Planning system managing the full lifecycle of business operations: from procurement (Purchases) and stock management (Inventory) to revenue generation (Sales) and financial oversight (Accounting). Features an AI Financial Analyst powered by Gemini.",
+  "requestFramePermissions": []
+}
