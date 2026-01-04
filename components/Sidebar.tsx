@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutDashboard, ShoppingCart, TrendingUp, Package, BookOpen, Bot, Settings } from 'lucide-react';
+import { LayoutDashboard, ShoppingCart, TrendingUp, Package, BookOpen, Bot, Settings } from './CustomIcons';
 import { Language, translations } from '../translations';
 import { UserProfile } from '../types';
 
@@ -25,6 +25,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, setView, onOpenSettings,
 
   const businessName = userProfile?.businessName || 'Business Manager';
   const userName = userProfile?.name || t.adminUser;
+  const role = userProfile?.role || 'Admin';
   const location = userProfile?.location || '';
 
   return (
@@ -33,7 +34,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, setView, onOpenSettings,
         <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400 break-words">
           {businessName}
         </h1>
-        <p className="text-xs text-slate-400 mt-1">Enterprise Management</p>
+        <p className="text-xs text-slate-400 mt-1">{userProfile?.industry || 'Enterprise Management'}</p>
         {location && <p className="text-[10px] text-slate-500 mt-1 flex items-center gap-1">📍 {location}</p>}
       </div>
       
@@ -66,7 +67,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, setView, onOpenSettings,
             </div>
             <div className="min-w-0">
                 <p className="text-sm font-medium truncate">{userName}</p>
-                <p className="text-xs text-slate-500 truncate">Admin</p>
+                <p className="text-xs text-slate-500 truncate">{role}</p>
             </div>
           </div>
           <button 

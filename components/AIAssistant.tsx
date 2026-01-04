@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ERPData } from '../types';
 import { analyzeERPData } from '../services/geminiService';
-import { Bot, Send, Sparkles, Loader2, X } from 'lucide-react';
+import { Bot, Send, Sparkles, Loader2, X } from './CustomIcons';
 import { Language, translations } from '../translations';
 
 interface AIAssistantProps {

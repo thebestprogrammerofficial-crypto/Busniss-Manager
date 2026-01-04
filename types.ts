@@ -43,6 +43,8 @@ export interface UserProfile {
   name: string;
   businessName: string;
   location: string;
+  role?: string;
+  industry?: string;
 }
 
 export interface ERPData {

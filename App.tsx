@@ -16,7 +16,9 @@ const INITIAL_DATA: ERPData = {
     userProfile: {
       name: '',
       businessName: '',
-      location: ''
+      location: '',
+      role: '',
+      industry: ''
     },
     products: [],
     transactions: [],
@@ -47,13 +49,16 @@ const App: React.FC = () => {
     }
   }, []);
 
-  const handleUpdateProfile = (name: string, businessName: string, location: string, apiKey: string) => {
+  const handleUpdateProfile = (name: string, businessName: string, location: string, apiKey: string, role?: string, industry?: string) => {
     setData(prev => ({
       ...prev,
       userProfile: {
+        ...prev.userProfile,
         name,
         businessName,
-        location
+        location,
+        role: role || prev.userProfile?.role,
+        industry: industry || prev.userProfile?.industry
       }
     }));
 
@@ -62,9 +67,9 @@ const App: React.FC = () => {
     }
   };
 
-  const handleAuthComplete = (apiKey: string, name: string, businessName: string, location: string) => {
+  const handleAuthComplete = (apiKey: string, name: string, businessName: string, location: string, role: string, industry: string) => {
     localStorage.setItem('nexus_onboarded', 'true');
-    handleUpdateProfile(name, businessName, location, apiKey);
+    handleUpdateProfile(name, businessName, location, apiKey, role, industry);
     setShowAuthModal(false);
   };
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ERPData } from '../types';
-import { PlusCircle, X } from 'lucide-react';
+import { PlusCircle, X } from './CustomIcons';
 import { Language, translations } from '../translations';
 
 interface AccountingProps {

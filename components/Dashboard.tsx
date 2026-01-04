@@ -1,7 +1,7 @@
 import React from 'react';
 import { ERPData, TransactionType } from '../types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
-import { DollarSign, Package, TrendingDown, TrendingUp } from 'lucide-react';
+import { DollarSign, Package, TrendingDown, TrendingUp } from './CustomIcons';
 import { Language, translations } from '../translations';
 
 interface DashboardProps {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ERPData, TransactionType } from '../types';
-import { PlusCircle, AlertCircle, Search, X } from 'lucide-react';
+import { PlusCircle, AlertCircle, Search, X } from './CustomIcons';
 import { Language, translations } from '../translations';
 
 interface SalesProps {

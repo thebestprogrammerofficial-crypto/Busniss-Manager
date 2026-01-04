@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Download, Upload, X, User, Building2, MapPin, Key, Save } from 'lucide-react';
+import { Download, Upload, X, User, Building2, MapPin, Key, Save, ShieldCheck } from './CustomIcons';
 import { ERPData } from '../types';
 import { Language, translations } from '../translations';
 
@@ -8,7 +8,7 @@ interface SettingsModalProps {
   onClose: () => void;
   data: ERPData;
   onImport: (data: ERPData) => void;
-  onUpdateProfile: (name: string, businessName: string, location: string, apiKey: string) => void;
+  onUpdateProfile: (name: string, businessName: string, location: string, apiKey: string, role?: string, industry?: string) => void;
   language: Language;
   setLanguage: (lang: Language) => void;
   currency: string;
@@ -33,6 +33,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
   const [name, setName] = useState('');
   const [businessName, setBusinessName] = useState('');
   const [location, setLocation] = useState('');
+  const [role, setRole] = useState('');
+  const [industry, setIndustry] = useState('');
   const [apiKey, setApiKey] = useState('');
 
   const t = translations[language];
@@ -43,6 +45,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
       setName(data.userProfile?.name || '');
       setBusinessName(data.userProfile?.businessName || '');
       setLocation(data.userProfile?.location || '');
+      setRole(data.userProfile?.role || '');
+      setIndustry(data.userProfile?.industry || '');
       setApiKey(localStorage.getItem('nexus_api_key') || '');
     }
   }, [isOpen, data]);
@@ -82,7 +86,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
   };
 
   const handleSave = () => {
-    onUpdateProfile(name, businessName, location, apiKey);
+    onUpdateProfile(name, businessName, location, apiKey, role, industry);
     onClose();
   };
 
@@ -117,12 +121,39 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                   </div>
                </div>
                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Your Role</label>
+                  <div className="relative">
+                    <ShieldCheck className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+                    <input 
+                      value={role}
+                      onChange={(e) => setRole(e.target.value)}
+                      placeholder="e.g. CEO"
+                      className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                    />
+                  </div>
+               </div>
+             </div>
+
+             <div className="grid grid-cols-2 gap-4">
+               <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1">{t.businessName}</label>
                   <div className="relative">
                     <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
                     <input 
                       value={businessName}
                       onChange={(e) => setBusinessName(e.target.value)}
+                      className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                    />
+                  </div>
+               </div>
+               <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Industry</label>
+                  <div className="relative">
+                     <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+                    <input 
+                      value={industry}
+                      onChange={(e) => setIndustry(e.target.value)}
+                      placeholder="e.g. Retail"
                       className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none"
                     />
                   </div>
